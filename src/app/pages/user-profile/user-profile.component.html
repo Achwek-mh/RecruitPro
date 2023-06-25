@@ -1,0 +1,178 @@
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<div class="header  pb-8 pt-8 pt-md-10 d-flex align-items-center" style="min-height: 300px; ">
+ <!-- Mask -->
+ <span class="mask bg-gradient-primary pb-8 pt-5 pt-md-8"></span>
+ <div class="container-fluid d-flex align-items-center">
+ 
+ </div>
+</div>
+  <div class="container-fluid mt--7 m ">
+    
+    <div class="row">
+      <div class="col">
+        <div class="card shadow ">
+          
+      
+
+ <div class="table-responsive">
+  <table class="table align-items-center table-flush">
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Post</th>
+        <th scope="col" *ngIf ="displayuser">actions</th>
+    
+      </tr>
+    </thead>
+    <tbody *ngFor = "let user of result">
+      <tr  [ngClass] ="{'table-light' :user.Role==='Admin'}">
+        <td scope="col"  >    
+          <span>
+            <img [src]='user.imagePath' [alt]="image"  class="avatar rounded-circle mr-3" />
+          </span>
+                {{user.firstname}} {{user.lastname}}
+                
+        </td>
+      
+        <td scope="col" >
+          {{user.email}}
+        </td>
+    
+      
+        <td scope="col" >
+        
+         {{user.Role}}
+    
+      </td>
+      <td scope="col" >
+        
+      RH
+  
+    </td>   
+    <td class="left"  *ngIf ="displayuser"> 
+      <button   id="b5"   (click)="editOpen(user ,mymodal) ">
+        <span class ="edit">
+          <i class="fa fa-pen" style ="font-size: 25px; color: rgb(228, 184, 63);"></i>
+         
+        </span>
+      </button> 
+    
+      <button id ="b4"(click)="delete(user._id)"  > 
+            <span class="trash">
+             <span></span>
+              <i></i>
+  
+            </span>
+          </button>   
+    </td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+        </div>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit Candidat</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #updateForm="ngForm" (ngSubmit)="updateForm.valid && update()  ">
+         
+      <table class="table align-items-center table-flush">
+       
+
+        <thead class="thead-light">
+
+          <tr>
+            <th scope="col">User</th>
+        <th scope="col">Emails</th>
+        <th scope="col">Role</th>
+        <th scope="col">Post</th>
+            <th scope ="col">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody >
+
+          <tr>
+  
+            <td><div class="form-group">
+              <div class="row">
+                <div class="col">
+              
+                <div class="input-group input-group-alternative">
+              <input class ="form-control" type ="text" #firstname="ngModel"   [(ngModel)] ="UserToUpdate.firstname" name="firstname"    [ngClass]="{'is-invalid' :updateForm.submitted  }" required  >
+                </div>
+                <div *ngIf="updateForm.submitted && firstname.errors ">
+                  <label *ngIf="firstname.errors?.['required']" class="badge badge-pill badge-danger dan">This field is required.</label>
+  
+                </div>  
+              </div>
+              <div class="col">
+                <div class="input-group input-group-alternative">
+              <input class ="form-control" type ="text" #lastname="ngModel"   [(ngModel)] ="UserToUpdate.lastname" name="lastname"    [ngClass]="{'is-invalid' :updateForm.submitted  }" required  >
+                </div>
+                <div *ngIf="updateForm.submitted && lastname.errors ">
+                  <label *ngIf="lastname.errors?.['required']" class="badge badge-pill badge-danger dan">This field is required.</label>
+  </div>
+                </div>  
+              </div>
+            </div>
+          </td>
+
+        
+          <td>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+            <input   class ="form-control" type ="text" #email="ngModel"   [(ngModel)] ="UserToUpdate.email" name="email"   [ngClass]="{'is-invalid' :updateForm.submitted && !email.valid }" required>
+            </div>
+            <div *ngIf="updateForm.submitted && email.errors">
+              <label *ngIf="email.errors?.['required']" class="badge badge-pill badge-danger dan">This field is required.</label>
+
+            </div>
+          </div>
+          </td>
+          <td>
+            <div class="form-group">
+            <select class ="form-control" type ="Role" #Role="ngModel"   [(ngModel)] ="UserToUpdate.Role" name="Role"    [ngClass]="{'is-invalid' :updateForm.submitted && !Role.valid }" [pattern]="RoleRegex" required>
+            
+           
+        
+              <option class="option" value="" disabled selected>Role</option>
+              <option class="option" value="Admin">Admin</option>
+              <option class="option" value="User">User</option>
+              </select>
+  
+            </div>
+          </td> 
+          <td>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+            <input   class ="form-control" type ="text"  #post="ngModel"   [(ngModel)] ="postt"  name="post"   required>
+            </div>
+            </div>
+          </td>
+         
+          
+          <td>
+            <button   data-label ="save"  type ="submit"id="b1" mat-raised-button color="primary" >save
+            </button> 
+
+              
+          </td>
+        </tr>
+          </tbody>
+       
+        </table>
+    </form>
+  </div>
+
+</ng-template>
+

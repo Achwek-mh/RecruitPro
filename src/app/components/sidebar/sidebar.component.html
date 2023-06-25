@@ -1,0 +1,90 @@
+<nav class="navbar navbar-vertical navbar-expand-md navbar-light bg-white" id="sidenav-main">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button"
+       aria-controls="sidenav-collapse-main" data-target ="#sidenav-collapse-main" data-toggle="collapse"> 
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+      <img src="./assets/img/brand/mma.png"  alt="...">
+
+
+    <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            <a  routerLinkActive="active" [routerLink]="['/dashboard']">
+              <img src="./assets/img/brand/mma.png" >
+            </a>
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" 
+             
+       aria-controls="sidenav-collapse-main" data-target ="#sidenav-collapse-main" data-toggle="collapse"> 
+      <span>&times;</span>
+    </button>
+          </div>
+        </div>
+      </div>
+
+      
+      <ul class="navbar-nav">
+        <li class=" nav-item">
+          <cdk-accordion class="example-accordion">
+          <cdk-accordion-item
+        #accordionItem="cdkAccordionItem"
+        class="example-accordion-item"
+        role="button"
+      
+        [attr.id]="'accordion-header-'"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.aria-controls]="'accordion-body-'">
+          <a routerLinkActive="active" class="nav-link"  (click)="accordionItem.toggle()" style="font-size: 20px">
+              <i class="ni ni-tv-2 text-primary"></i>
+            Dashboard &nbsp;
+            <span class="example-accordion-item-description" *ngIf="accordionItem.expanded">
+           
+              <i class="fa fa-chevron-up"></i>
+            </span> 
+            <span class="example-accordion-item-description" *ngIf="!accordionItem.expanded">
+           
+              <i class="fa fa-chevron-down"></i>
+            </span> 
+          </a>
+      
+          <div
+          class="example-accordion-item-body" 
+          role="region"
+          [style.display]="accordionItem.expanded ? '' : 'none'"
+          [attr.id]="'accordion-body-' "
+          [attr.aria-labelledby]="'accordion-header-' ">
+          <a routerLinkActive="active" [routerLink]="['/dashboard']" class="nav-link justify-content-center"style="font-size: 16px">Recruitement </a>
+          <a routerLinkActive="active" [routerLink]="['/internship']" class="nav-link justify-content-center"style="font-size: 16px">Internship </a>
+
+           </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+          
+      </li>
+      <li class=" nav-item ">
+        <a routerLinkActive="active" [routerLink]="['/user-profile']" class="nav-link" style="font-size: 20px">
+            <i class="ni ni-single-02 text-yellow"></i>
+         Users
+        </a>
+    </li>
+    <li class=" nav-item">
+      <a routerLinkActive="active" [routerLink]="['/agenda']" class="nav-link" style="font-size: 20px"> 
+          <i class="ni ni-calendar-grid-58 text-green"></i>
+       Agenda
+      </a>
+  </li> 
+ 
+      </ul>
+      
+    </div>
+    
+
+
+  </div>
+</nav>
+
+ 

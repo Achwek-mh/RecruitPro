@@ -1,0 +1,402 @@
+<app-secnav></app-secnav>
+
+    <div class="container-fluid">
+      <div class="header-body">
+        <!-- Card stats -->
+      </div>
+    </div>
+  <!-- Page content -->
+  
+  
+  <div class="container-fluid mt--7">
+    <div class="row">
+      <div class="col">
+        <div class="card ">
+          <div class="card-header border-0">
+            <div class ="row">
+              <div class="col">
+              <h3 class="mb-0">Internship
+              </h3></div>
+              <div class="col search">
+              <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+                <div class="form-group mb-0" [ngClass]="{ 'focused': focus === true }">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="fas fa-search text-blue"></i></span>
+                    </div>
+                    <input class="form-control text-blue" placeholder="Search" type="text" (focus)="focus = true"
+                    (blur)="focus = false"  
+                    [(ngModel)]="searchtext"
+                   name ="searchtext"
+                   
+                  />
+                  </div>
+                </div>
+              </form></div></div>
+          </div>
+  
+          <div  class="table-responsive">
+            <form #internship ="ngForm"  (ngSubmit)="internship.valid && save(internship)">
+  
+            <table class="table align-items-center table-flush">
+             
+  
+              <thead class="thead-light">
+  
+                <tr>
+                  <th scope="col" class ="text-center">name</th>
+                  <th scope="col" class ="text-center">Email</th>
+                  <th scope="col" class ="text-center"> Post</th>
+                  <th scope="col" class ="text-center">Scheduled date</th>
+                  <th scope="col" class ="text-center">Status</th>
+                  <th scope="col" class ="text-center">Manager</th>
+                  <th scope="col" class ="text-center">Result</th>
+                  <th scope="col" class ="text-center">Result date</th>
+                  <th scope ="col" class ="text-center" *ngIf ="displayuser">Actions</th>
+                </tr>
+              </thead>
+  
+              <tbody *ngIf ="displayuser" >
+  
+                <tr>
+        
+                  <td>
+                    <div class="form-group">
+                      <div class="input-group input-group-alternative">
+                    <input class ="form-control" type ="text" #Name="ngModel"  autocomplete="off" [(ngModel)] ="dashboardservice.selectedIntern.Name" name="Name"    [ngClass]="{'is-invalid' :internship.submitted && !Name.valid  && !Name.pristine  }" required [minlength]="6">
+                  
+                      </div>
+                      <div *ngIf="internship.submitted && Name.errors && !Name.pristine  ">
+                        <label *ngIf="Name.errors?.['required']"  class="badge badge-pill badge-danger dan" >This field is required.</label>
+                        <label *ngIf="Name.errors?.['minlength']"  class="badge badge-pill badge-danger dan" >Min 6 characters</label>
+                      </div>
+                    </div>  
+                </td>
+                <td>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                  <input class ="form-control" type ="email" #Email="ngModel"  autocomplete="off" [(ngModel)] ="dashboardservice.selectedIntern.Email" name="Email"    [ngClass]="{'is-invalid' :internship.submitted && !Email.valid && !Email.pristine}" [pattern]="emailRegex" required>
+           
+                    </div>
+                           <div *ngIf="internship.submitted && !Email.pristine ">
+                    <label *ngIf =  "Email?.errors?.['pattern']"  class="badge badge-pill badge-danger dan" >Invalid email address.</label>
+                    <label *ngIf="Email.errors?.['required']"  class="badge badge-pill badge-danger dan" >This field is required.</label>
+  
+                  </div>
+                  <label class="badge badge-pill badge-danger dan"  *ngIf="serverErrorMessages"> {{serverErrorMessages}}</label>
+
+                  </div>  
+              </td>
+                
+                <td>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                  <input   class ="form-control" type ="text" #Post="ngModel"  autocomplete="off" [(ngModel)] ="dashboardservice.selectedIntern.Post" name="Post"   [ngClass]="{'is-invalid' :internship.submitted && !Post.valid  && !Post.pristine}" required>
+  
+                    </div>
+                    <div *ngIf="internship.submitted && Post.errors  && !Post.pristine">
+                      <label *ngIf="Post.errors?.['required']" class="badge badge-pill badge-danger dan">This field is required.</label>
+                    </div>
+                </div>
+                </td>
+               
+                <td>
+
+  <div class="form-group">
+    <div class="input-group input-group-alternative">
+      
+        <input class="form-control datepicker"  type ="date" #Scheduled_date="ngModel"   [(ngModel)] ="dashboardservice.selectedIntern.Scheduled_date" name="Scheduled_date" >
+   
+    </div>
+</div>
+                </td>
+                <td>
+                  
+  
+                   <div class="form-group">
+                        <div class="input-group input-group-alternative">
+                          <select class ="form-control" style ="width: 140px" type ="text" #state="ngModel"   [(ngModel)] ="dashboardservice.selectedIntern.state" name="state">
+                            
+                            <option class="option" value="Done">Done</option>
+                            <option class="option" value="pending">pending</option>
+                          </select>
+                    </div>
+                </div>
+              
+      
+                </td>
+               
+                <td>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                  <input class ="form-control" type ="text" #Manager_Concerned="ngModel"   autocomplete="off"[(ngModel)] ="dashboardservice.selectedIntern.Manager_Concerned" name="Manager_Concerned" >
+               
+                    </div>
+                  </div>
+                </td>
+            
+                <td>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                      <select class ="form-control" style="width: 125px" type ="text" #Result="ngModel"   [(ngModel)] ="dashboardservice.selectedIntern.Result" name="Result">
+                        <option class="option " value="-">-</option>
+                        <option class="option " value="Accepted">Accepted</option>
+                        <option class="option " value="Refused">Refused</option>
+          
+                      </select>
+                </div>
+              </div>
+                </td>
+            
+                <td>
+                  <div class="form-group">
+                    <div class="input-group input-group-alternative">
+                  <input class ="form-control" type ="date" #Date2="ngModel"  autocomplete="off" [(ngModel)] ="dashboardservice.selectedIntern.Date2" name="Date2">
+                </div>
+              </div>
+                </td>
+               
+                
+                <td>
+                  <button   data-label ="save"  type ="submit"id="b1" mat-raised-button color="primary">save
+                  </button> 
+            
+                    
+                </td>
+              </tr>
+                </tbody>
+             
+              </table>
+              </form>
+              {{serverErrorMessages}}
+  
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+    
+          <div class="table-responsive">
+
+            <table class="table  table-hover">
+             
+  
+              
+  
+              
+                <tbody>
+  
+                <tr *ngFor = "let Intern of result1  |filter:searchtext  | paginate
+                : {
+                    itemsPerPage: tableSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index"> 
+                  
+                  <td scope="col" class ="nb1">
+                   
+                    {{Intern.Name}}
+                  </td>
+                  <td scope="col"  class ="text-center">
+                    {{Intern.Email}}
+                  </td>
+              
+                  <td scope="col" class ="nb2">
+                    {{Intern.Post}}
+                  </td>
+                  
+                  <td  scope="col"  class ="text-center">
+                    {{Intern.Scheduled_date}}
+                  </td>
+                  
+                 
+                  <td scope="col"  class ="text-center" >
+                   
+                    <span class="badge badge-dot" >
+                      
+  
+                     <i class="bg-success" *ngIf="Intern.state === 'Done' || Intern.state === ' Done' || Intern.state === 'Done '"></i>
+                    
+                        <i class="bg-warning" *ngIf="Intern.state !== 'Done' && Intern.state !== ' Done' && Intern.state !== ' Done ' "></i>
+                    {{Intern.state}}
+                    </span>
+                  </td>
+                  <td scope="col"  class ="text-center">  {{Intern.Manager_Concerned}}
+                  </td>
+                  
+                  <td scope="col" class ="text-center">
+                    <span class="badge1" *ngIf = "Intern.Result!== 'Accepted' && Intern.Result!== 'Refused'">
+                    
+                      {{Intern.Result}}</span>
+             
+           <span class="badge badge-pill badge-success" style ="font-size:14px "*ngIf ="Intern.Result=== 'Accepted'" >
+                        
+                {{Intern.Result}}
+        </span>
+        <span class="badge badge-pill badge-danger " style ="font-size:14px " *ngIf ="Intern.Result=== 'Refused' ||Intern.Result=== ' Refused' || Intern.Result=== ' Refused '" >
+                        
+          {{Intern.Result}}
+    </span> 
+            
+                  </td>
+              
+                  <td scope="col"  class ="text-center">      {{Intern.Date2}} 
+            
+                  </td>
+                  <td *ngIf ="displayuser">
+                    <button *ngIf ="displayuser"  id="b5"   (click)="editOpen(Intern ,mymodal) ">
+                    <span class ="edit">
+                      <i class="fa fa-pen" style ="font-size: 27px; color: rgb(228, 184, 63);"></i>
+                     
+                    </span>
+                  </button> 
+                
+                  <button *ngIf ="displayuser"  id ="b4"(click)="delete(Intern.id)"  > 
+                        <span class="trash">
+                         <span></span>
+                          <i></i>
+  
+                        </span>
+                      </button>   
+                  </td>
+                  
+               
+              
+                </tr>
+                
+                   
+        
+              </tbody>
+            </table>
+            
+          </div>
+          <div class="d-flex justify-content-end">
+            <pagination-controls
+              previousLabel="Prev"
+              nextLabel="Next"
+              (pageChange)="onTableDataChange($event)">
+            
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <ng-template #mymodal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Intern</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #updateForm="ngForm" (ngSubmit)="update()">
+           
+        <table class="table align-items-center table-flush">
+         
+  
+          <thead class="thead-light">
+  
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Post</th>
+              <th scope="col">Scheduled date</th>
+              <th scope="col">Status</th>
+              <th scope="col">Manager</th>
+              <th scope="col">Result</th>
+              <th scope="col">Result date</th>
+              <th scope ="col">Actions</th>
+            </tr>
+          </thead>
+  
+          <tbody >
+  
+            <tr>
+    
+              <td>
+                <input class ="form-control" type ="text" #Name="ngModel"   [(ngModel)] ="InternToUpdate.Name" name="Name"    [ngClass]="{'is-invalid' :updateForm.submitted && !Name.valid }" required>
+                <div *ngIf="updateForm.submitted && Name.errors ">
+                  <label *ngIf="Name.errors?.['required']" class="alert-danger">This field is required.</label>
+                  <label *ngIf="Name.errors?.['minlength']" class="alert-danger">Min 6 characters</label>
+  
+                </div>  
+            </td>
+            <td>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+            <input class ="form-control" type ="email" #Email="ngModel"   [(ngModel)] ="InternToUpdate.Email" name="Email"    [ngClass]="{'is-invalid' :updateForm.submitted && !Email.valid }" [pattern]="emailRegex" required>
+            <div *ngIf="internship.submitted && !Email.pristine ">
+            <label *ngIf =  "Email?.errors?.['pattern']"  class="badge badge-pill badge-danger dan" >Invalid email address.</label>
+            <label *ngIf="Email.errors?.['required']"  class="badge badge-pill badge-danger dan" >This field is required.</label>
+            </div>
+              </div>
+              <label class="badge badge-pill badge-danger dan"  *ngIf="serverErrorMessages"> {{serverErrorMessages}}</label>
+
+            </div>
+            </td> 
+            <td>
+           
+              <input   class ="form-control" type ="text" #Post="ngModel"   [(ngModel)] ="InternToUpdate.Post" name="Post"   [ngClass]="{'is-invalid' :updateForm.submitted && !Name.valid }" required>
+              <div *ngIf="updateForm.submitted && Post.errors">
+                <label *ngIf="Post.errors?.['required']" class="alert-danger">This field is required.</label>
+  
+         
+            </div>
+            </td>
+           
+            <td>
+              <input class ="form-control" type ="date" #Scheduled_date="ngModel"   [(ngModel)] ="InternToUpdate.Scheduled_date" name="Scheduled_date" >
+              <div *ngIf="updateForm.submitted && Scheduled_date.errors">
+                <label *ngIf="Scheduled_date.errors?.['required']" class="alert-danger">This field is required.</label>
+  
+              </div>
+            </td>
+            <td>
+
+              <select class ="form-control"  type ="text" #state="ngModel"   [(ngModel)] ="InternToUpdate.state" name="state">
+                <option class="option" value="Done">Done</option>
+                <option class="option" value="pending">pending</option>
+              </select>            </td>
+           
+            <td>
+              <input class ="form-control" type ="text" #Manager_Concerned="ngModel"   [(ngModel)] ="InternToUpdate.Manager_Concerned" name="Manager_Concerned" >
+              <div *ngIf="updateForm.submitted && Manager_Concerned.errors">
+                <label *ngIf="Manager_Concerned.errors?.['required']" class="alert-danger">This field is required.</label>
+  
+              </div>
+            </td>
+        
+            <td>
+              <select class ="form-control" type ="text" #Result="ngModel"   [(ngModel)] ="InternToUpdate.Result" name="Result">
+                <option class="option " value="-">-</option>
+                <option class="option " value="Accepted">Accepted</option>
+                <option class="option " value="Refused">Refused</option>
+  
+              </select>            </td>
+        
+            <td>
+              <input class ="form-control" type ="text" #Date2="ngModel"   [(ngModel)] ="InternToUpdate.Date2" name="Date2">
+            </td>
+           
+            
+            <td>
+              <button   data-label ="save"  type ="submit"id="b1" mat-raised-button color="primary" (click)="modal.close('Save click') ">save
+              </button> 
+  
+                
+            </td>
+          </tr>
+            </tbody>
+         
+          </table>
+      </form>
+    </div>
+  
+  </ng-template>
+  

@@ -1,0 +1,145 @@
+ <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+ <div class="header pb-8 pt-8 pt-md-10 d-flex align-items-center" style="min-height: 300px; ">
+  <!-- Mask -->
+  <span class="mask bg-gradient-primary pb-8 pt-5 pt-md-8"></span>
+  <div class="container-fluid d-flex align-items-center">
+  
+  </div>
+ </div>
+ <div class="container-fluid mt--7">
+
+ <div class="row">
+  <div class="col">
+    <div class="card ">
+      
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <full-calendar [options]="calendarOptions"></full-calendar>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade " id="myModal" *ngIf ="displayuser" >
+  <div class="modal-dialog  modal-dialog-centered modal-lg">
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <h4 class="modal-title align-center"></h4>
+        <button type="button" class="close" (click)="hideForm()" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <form  [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+          
+             <div class="col-sm-12">
+                <div class="form-group">
+                  <div class="row">
+                  <div class="col">
+                      <label class="l2">Candidat Name :</label>
+                    </div>
+                    <div class="col">
+                      <input placeholder="Add Candidate Name" type="text" formControlName="title" class="titleinp form-control" [ngClass]="{ 'is-invalid': submitted && f?.['title']?.['errors'] }" /><div *ngIf="submitted && f?.['title']?.['errors']" class="invalid-feedback">
+                            <div *ngIf="f?.['title']?.['errors']?.['required']">Title is required</div>
+                      </div>
+                    </div>
+                    </div>
+                   </div>
+
+             </div> 
+             <div class="col-sm-12">
+              <div class="form-group">
+                <div class="row">
+                <div class="col">
+                    <label class="l3">Email :</label>
+                  </div>
+                  <div class="col">
+                    <input placeholder="Add Candidate email" type="text" formControlName="email" class="post form-control" [ngClass]="{ 'is-invalid': submitted && f?.['email']?.['errors'] }" /><div *ngIf="submitted && f?.['email']?.['errors']" class="invalid-feedback">
+                          <div *ngIf="f?.['email']?.['errors']?.['required']">email is required</div>
+                    </div>
+                  </div>
+                  </div>
+                 </div>
+
+           </div> 
+             <div class="col-sm-12">
+              <div class="form-group">
+                    <label class="l1">Interview Type :</label>
+                    <select name="interview" id="interview"  formControlName="interview">
+                      <option value="recruitement">Recruitement</option>
+                      <option value="internship">Internship</option>
+                    </select>
+                    
+                 </div>
+             </div>
+             <div class="col-sm-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <label class="l3">Post :</label>
+                  </div>
+                  <div class="col">
+                    <input placeholder="Add post" type ="text" formControlName="post" class="post form-control"  [ngClass]="{ 'is-invalid': submitted && f?.['post']?.['errors']} " >
+                    <div *ngIf="submitted && f?.['post']?.['errors']" class="invalid-feedback">
+                      <div *ngIf="f?.['post']?.['errors']?.['required']">Post is required</div>
+                </div>
+                  </div>
+                 </div>
+              </div>
+           </div> 
+           <div class="col-sm-12">
+            <div class="form-group">
+              <div class="row">
+                <div class="col">
+                  <label class="l3">Manager :</label>
+                </div>
+                <div class="col">
+                  <input placeholder="Add Manager" type ="text" formControlName="Manager" class="Manager form-control"  [ngClass]="{ 'is-invalid': submitted && f?.['Manager']?.['errors']} " >
+                  <div *ngIf="submitted && f?.['Manager']?.['errors']" class="invalid-feedback">
+                    <div *ngIf="f?.['Manager']?.['errors']?.['required']">Manager name is required</div>
+              </div>
+                </div>
+              </div>
+               </div>
+         </div> 
+             <div class="col-sm-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <label class="l1">Date:</label></div>
+                    <div class="col">
+                      <div class="form-control eventstarttitle"></div>
+
+                    </div>
+                 </div>
+           </div> 
+             </div>
+             <div class="col-sm-12">
+              <div class="form-group">
+                <div class="row">
+                  <div class="col">
+                    <label class="l1">Time :</label></div>
+                    <div class="col">
+                      <input placeholder="add time" type ="time" formControlName="time" class="post form-control" >
+
+                    </div>
+                 </div>
+           </div> 
+             </div> 
+          
+             
+             
+             
+          
+         <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+ </div>
+ </div>
+ </div>

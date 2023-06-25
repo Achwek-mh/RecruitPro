@@ -1,0 +1,33 @@
+button {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    margin-left: 110px;
+    margin-top: 40px;
+  }
+  
+  button:hover {
+    background-color: #2343c4;
+    box-shadow: 0px 15px 20px rgba(59, 129, 233, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+  }
+  
+  button:active {
+    transform: translateY(-1px);
+  }
+   .alert-danger {
+    margin-top: 12px;
+}
+.form-group{
+    margin-top :40px ;
+}
