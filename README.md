@@ -3,7 +3,7 @@
 
 <!-- Heading of Template -->
 <h1>
-  RecruitPro: Recruitement management platform 
+Recruitement management platform 
 </h1>
 
 <!-- Main image of Template -->
@@ -22,23 +22,23 @@ During my internship, I took on the responsibility of developing a comprehensive
 
 <!-- Upgrade to Premium version of Template -->
 <h2>Dashboard : Recruitement candidats</h2>
-    <img src="assets/img/1.png" alt="Xtreme Template  Bootstrap" >
+    <img src="assets/1.png" alt="Xtreme Template  Bootstrap" >
     </br>
     
 <h2>Dashboard : Internship candidats</h2>
-    <img src="assets/img/2.png" alt="Xtreme Template  Bootstrap" >
+    <img src="assets/2.png" alt="Xtreme Template  Bootstrap" >
         </br>
 
 <h2>Users List</h2>
-    <img src="assets/img/3.png" alt="Xtreme Template  Bootstrap" >
+    <img src="assets/3.png" alt="Xtreme Template  Bootstrap" >
         </br>
 
 <h2>Agenda</h2>
-    <img src="assets/img/4.png" alt="Xtreme Template  Bootstrap" >
+    <img src="assets/4.png" alt="Xtreme Template  Bootstrap" >
         </br>
 
 <h2>Signup page</h2>
-    <img src="assets/img/5.png" alt="Xtreme Template  Bootstrap" >
+    <img src="assets/5.png" alt="Xtreme Template  Bootstrap" >
         </br>
 
  
